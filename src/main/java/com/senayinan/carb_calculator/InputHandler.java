@@ -1,5 +1,7 @@
 package com.senayinan.carb_calculator;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class InputHandler {
@@ -8,22 +10,23 @@ public class InputHandler {
     public InputHandler(Scanner input) {
         this.input = input;
     }
-    public double[] getCarbs(int numberOfCarbs) {
-        double[] carbs = new double[numberOfCarbs];
+    public List<Double> getCarbs(int numberOfCarbs) {
+        List<Double> carbs = new ArrayList<>();
         for(int i = 0; i < numberOfCarbs; i++)  {
             System.out.println("What is your " + getOrdinal(i + 1) + " carb amount?: ");
-            carbs[i] = input.nextDouble();
+            double carbAmount = input.nextDouble();
+            carbs.add(carbAmount);
         }
         return carbs;
     }
 
-    public double calculateTotalCarbs(double[] carbs)   {
-        double sum = 0;
+    public double calculateTotalCarbs(List<Double>carbs)   {
+        double totalCarbs = 0;
         for(double carb : carbs) {
-            sum += carb;
+            totalCarbs += carb;
         }
-        System.out.println("Your total carb consumption is " + sum + " grams");
-        return sum;
+        System.out.println("Your total carb consumption is " + totalCarbs + " grams");
+        return totalCarbs;
 
 
     }
